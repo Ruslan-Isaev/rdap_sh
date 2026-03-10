@@ -1,4 +1,4 @@
-# rdap.sh
+# rdap_sh
 
 A minimal Bash CLI tool for querying [RDAP](https://en.wikipedia.org/wiki/Registration_Data_Access_Protocol) (Registration Data Access Protocol) information for IP addresses and domain names via [rdap.org](https://rdap.org).
 
@@ -18,8 +18,8 @@ A minimal Bash CLI tool for querying [RDAP](https://en.wikipedia.org/wiki/Regist
 ## Installation
 
 ```bash
-git clone https://github.com/Ruslan-Isaev/rdap.sh.git
-cd rdap.sh
+git clone https://github.com/Ruslan-Isaev/rdap_sh.git
+cd rdap_sh
 chmod +x rdap
 ```
 
