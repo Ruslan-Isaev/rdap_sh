@@ -1,0 +1,30 @@
+#!/bin/bash
+
+query="$1"
+
+if [[ -z "$query" ]]; then
+  echo "Usage: $0 <domain or IP>"
+  exit 1
+fi
+
+if [[ "$query" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+  url="https://rdap.org/ip/$query"
+else
+  url="https://rdap.org/domain/$query"
+fi
+
+response=$(curl -s -L -w "\n%{http_code}" "$url")
+http_status=$(echo "$response" | tail -n1)
+content=$(echo "$response" | head -n -1)
+
+if [[ "$http_status" -ne 200 ]]; then
+  echo "Error: RDAP request failed with status $http_status"
+  exit 1
+fi
+
+if [[ -z "$content" ]]; then
+  echo "Error: Empty response from RDAP server"
+  exit 1
+fi
+
+echo "$content" | jq .
